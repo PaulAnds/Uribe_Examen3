@@ -13,23 +13,32 @@ public class BEU_HealthScript : MonoBehaviour
     private BEU_EnemyMovement enemyMovement;
     private bool characterDied; //El personaje esta muerto Y/N?
 
+    private BEU_HealtUi salud;
+
     private void Awake()
     {
-        //Inicialización de referencia de CharacterAnimation
+        //Inicializaciï¿½n de referencia de CharacterAnimation
         animationScript = GetComponentInChildren<BEU_CharacterAnimation>();
+        if (isPlayer)
+        {
+            salud = GetComponent<BEU_HealtUi>();
+        }
     }
 
-    //Metodo para aplicar daño
+    //Metodo para aplicar daï¿½o
     public void ApplyDamage(float _damage, bool _knockdown)
     {
         //Checar si el personaje esta muerto
         if (characterDied)
-            //Si esto aplica, salimos de la función
+            //Si esto aplica, salimos de la funciï¿½n
             return;
 
-        //Reducir vida usando el parametro local de daño
+        //Reducir vida usando el parametro local de daï¿½o
         healt -= _damage;
-
+        if (isPlayer)
+        {
+            salud.DisplayHealth(healt);
+        }
         //Mostrar UI de vida
 
         //Condicional de muerte del personaje
@@ -46,9 +55,11 @@ public class BEU_HealthScript : MonoBehaviour
             if(isPlayer)
             {
                 //Desactivar el Script de Enemigo!
+                GameObject.FindWithTag(BEU_Tags.PLAYER_TAG)
+                    .GetComponent<BEU_PlayerMovement>().enabled = false;
             }
 
-            //Salida de función
+            //Salida de funcion
             return;
         }
 
@@ -60,9 +71,9 @@ public class BEU_HealthScript : MonoBehaviour
             if(_knockdown)
             {
                 //Si el parametro es true, tendremos un rango aleatorio para
-                //llamar a la animación Knockdown del Enemigo
+                //llamar a la animacion Knockdown del Enemigo
                 //El jugador tendra 50% de probabilidad de noquear al enemigo
-                if(Random.Range(0, 2) > 0)
+                if(Random.Range(0, 4) > 2)
                 {
                     //Llamar al metodo de noqueo del script de animaciones
                     animationScript.Knockdown();
@@ -72,8 +83,8 @@ public class BEU_HealthScript : MonoBehaviour
             { 
                 //Esto aplica cuando el parametro de noqueo es falso
 
-                //Rango aleatorio para llamar a la animación de impacto del enemigo
-                //33% de probabilidad para llamar a dicha animación
+                //Rango aleatorio para llamar a la animacion de impacto del enemigo
+                //33% de probabilidad para llamar a dicha animacion
                 if(Random.Range(0, 3) > 1)
                 {
                     //Llamar al metodo de impacto dentro del Script de animaciones

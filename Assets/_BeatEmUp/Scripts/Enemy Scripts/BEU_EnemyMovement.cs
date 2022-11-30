@@ -68,7 +68,7 @@ public class BEU_EnemyMovement : MonoBehaviour
         if (Vector3.Distance(transform.position, playerTarget.position) > attackDistance)
         {
             // Si es el caso, el enemigo no puede atacar
-            // El enemigo seguirá al jugador 
+            // El enemigo seguirï¿½ al jugador 
             // Rotar al enemigo hacia el jugador
             transform.LookAt(playerTarget);
 
@@ -125,14 +125,14 @@ public class BEU_EnemyMovement : MonoBehaviour
         {
             // Si es el caso, el enemigo atacara de forma aleatoria
             // Esto usa las animaciones de ataque del enemigo y el indicee que determina el ataque
-            enemyAnim.EnemyAttack(Random.Range(0, 3));
+            enemyAnim.EnemyAttack(Random.Range(0, 2));
 
             // Reseteo del tiempo actual de ataque
             currentAttackTime = 0f;
         }
 
         // Evaluar si la distancia entre el enemigo y el jugador es mayor a la distancia de ataque
-        // Aqui vamos a añadir la distancia de persecucion para tener mas espacio para huir
+        // Aqui vamos a aï¿½adir la distancia de persecucion para tener mas espacio para huir
         if(Vector3.Distance(transform.position, playerTarget.position) > attackDistance + chasePlayerAfterAttack)
         {
             // Dar un espacio al jugador antes de ser perseguido

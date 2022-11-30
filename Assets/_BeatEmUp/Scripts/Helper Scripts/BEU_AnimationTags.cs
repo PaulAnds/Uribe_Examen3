@@ -41,6 +41,7 @@ public class BEU_Tags
     public const string LEFT_ARM_TAG = "LeftArm";
     public const string LEFT_LEG_TAG = "LeftLeg";
     public const string RIGHT_ARM_TAG = "RightArm";
+    public const string NoqueadorTAG = "Noqueador";
     public const string UNTAGGED_TAG = "Untagged";
     public const string MAIN_CAMERA_TAG = "MainCamera";
     public const string HEALTH_UI = "HealthUI";

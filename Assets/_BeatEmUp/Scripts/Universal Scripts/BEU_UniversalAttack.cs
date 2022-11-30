@@ -6,8 +6,8 @@ public class BEU_UniversalAttack : MonoBehaviour
 {
     //Variables Publicas
     public LayerMask collisionLater; //Later que evalua las colisiones de ataque 
-    public float radius = 1f; //Radio de esfera de detección
-    public float damage = 2f; //Cantidad de daño a realizar
+    public float radius = 1f; //Radio de esfera de detecciï¿½n
+    public float damage = 2f; //Cantidad de daï¿½o a realizar
     public bool isPlayer; //El jugador tiene este script Y/N?
     public bool isEnemy; //El enemigo tiene este script Y/N?
     public GameObject hitFXPrefab; //Prefab para efecto de imapcto
@@ -26,18 +26,15 @@ public class BEU_UniversalAttack : MonoBehaviour
         //Esta esfera es invisible en el juego
         Collider[] _hit = Physics.OverlapSphere(transform.position, radius, collisionLater);
 
-        //Prueba de detección
+        //Prueba de detecciï¿½n
         if(_hit.Length > 0)
         {
             //Esto aplica si impactamos a un enemigo
 
-            //Mensaje para ver que impactamos al enemigo
-            Debug.Log("We Hit The: " + _hit[0].gameObject.name);
-
             //Checar si el jugador es quien ataca
             if(isPlayer)
             {
-                //Obtener la posición del impacto una colision en el arreglo
+                //Obtener la posicion del impacto una colision en el arreglo
                 //Esta variable local nos ayudara a posicionar el FX de impacto
                 Vector3 _hitFXPos = _hit[0].transform.position;
 
@@ -45,7 +42,7 @@ public class BEU_UniversalAttack : MonoBehaviour
                 //Subir el efecto de impacto
                 _hitFXPos.y += 1.3f;
 
-                //Posición del efecto en X
+                //Posiciï¿½n del efecto en X
                 //Checar si el enemigo se encuentra volteando a la derecha
                 if(_hit[0].transform.forward.x > 0)
                 {
@@ -61,8 +58,8 @@ public class BEU_UniversalAttack : MonoBehaviour
                 //Instanciar las particulas de Impacto
                 Instantiate(hitFXPrefab, _hitFXPos, Quaternion.identity);
 
-                //Comparación de Tags del GO del jugador
-                if(gameObject.CompareTag(BEU_Tags.LEFT_ARM_TAG) || gameObject.CompareTag(BEU_Tags.LEFT_LEG_TAG))
+                //Comparacion de Tags del GO del jugador
+                if(gameObject.CompareTag(BEU_Tags.NoqueadorTAG))
                 {
                     //Obtener el script de vida que este asignado al enemigo
                     //Esto es para bajarle vida
@@ -72,14 +69,14 @@ public class BEU_UniversalAttack : MonoBehaviour
                 else
                 {
                     //Esto es si el ataque no cuenta con los tags contemplados
-                    //llamar a la función ApplpyDamage del script de vida del enemigo
+                    //llamar a la funciï¿½n ApplpyDamage del script de vida del enemigo
                     //El jugador no activa el bool knockdown
-                    _hit[0].GetComponent<BEU_HealthScript>().ApplyDamage(damage, true);
+                    _hit[0].GetComponent<BEU_HealthScript>().ApplyDamage(damage, false);
                 }
             }
             else
             {
-                //Obtener la posición del impacto una colision en el arreglo
+                //Obtener la posicion del impacto una colision en el arreglo
                 //Esta variable local nos ayudara a posicionar el FX de impacto
                 Vector3 _hitFXPos = _hit[0].transform.position;
 
@@ -87,7 +84,7 @@ public class BEU_UniversalAttack : MonoBehaviour
                 //Subir el efecto de impacto
                 _hitFXPos.y += 1.3f;
 
-                //Posición del efecto en X
+                //Posiciï¿½n del efecto en X
                 //Checar si el enemigo se encuentra volteando a la derecha
                 if (_hit[0].transform.forward.x > 0)
                 {
@@ -103,8 +100,8 @@ public class BEU_UniversalAttack : MonoBehaviour
                 //Instanciar las particulas de Impacto
                 Instantiate(hitFXPrefab, _hitFXPos, Quaternion.identity);
 
-                //Comparación de Tags del GO del jugador
-                if (gameObject.CompareTag(BEU_Tags.LEFT_ARM_TAG) || gameObject.CompareTag(BEU_Tags.LEFT_LEG_TAG))
+                //Comparacion de Tags del GO del jugador
+                if (gameObject.CompareTag(BEU_Tags.NoqueadorTAG))
                 {
                     //Obtener el script de vida que este asignado al enemigo
                     //Esto es para bajarle vida
@@ -114,9 +111,9 @@ public class BEU_UniversalAttack : MonoBehaviour
                 else
                 {
                     //Esto es si el ataque no cuenta con los tags contemplados
-                    //llamar a la función ApplpyDamage del script de vida del enemigo
+                    //llamar a la funciï¿½n ApplpyDamage del script de vida del enemigo
                     //El jugador no activa el bool knockdown
-                    _hit[0].GetComponent<BEU_HealthScript>().ApplyDamage(damage, true);
+                    _hit[0].GetComponent<BEU_HealthScript>().ApplyDamage(damage, false);
                 }
             }
 
