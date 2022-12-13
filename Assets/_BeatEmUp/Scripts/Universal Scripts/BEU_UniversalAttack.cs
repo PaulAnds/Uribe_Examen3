@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +30,7 @@ public class BEU_UniversalAttack : MonoBehaviour
         //Prueba de detecci�n
         if(_hit.Length > 0)
         {
+            Debug.Log("Golpeado");
             //Esto aplica si impactamos a un enemigo
 
             //Checar si el jugador es quien ataca
