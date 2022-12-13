@@ -9,9 +9,9 @@ public class TestYourMight : MonoBehaviour
 {
     [SerializeField]private float mashDelay;
     private float mash;
-    [FormerlySerializedAs("barra")] public Image barraUI;
-    private bool started = false;
-    [SerializeField]private float tiempo;
+    private bool started = true;
+    [SerializeField]private float tiempo; 
+    public Image barraUI;
     public GameObject barra;
 
 
@@ -27,7 +27,7 @@ public class TestYourMight : MonoBehaviour
 
         mash -= Time.deltaTime;
 
-        if (started && Input.GetKeyUp(KeyCode.Z))
+        if (started)
         {
             barra.SetActive(true);
             tiempo -= Time.deltaTime;
@@ -60,21 +60,6 @@ public class TestYourMight : MonoBehaviour
             started = false;
             Debug.Log("cagaste");
             barra.SetActive(false);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            started = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            started = false;
         }
     }
 }

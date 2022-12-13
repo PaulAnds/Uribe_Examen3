@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BEU_EnemyMovement : MonoBehaviour
 {
+    public string nextLevel;
     // Variables publicas
     public float speed = 5f; // Velocidad del enemigo
     public float attackDistance = 1f; // Distancia de ataque del enemigo
@@ -20,7 +21,7 @@ public class BEU_EnemyMovement : MonoBehaviour
     private float defaultAttackTime = 2f; // Tiempo establecido de ataques del enemigo
 
     private bool followPlayer; // El enemigo sigue al jugador
-    private bool attackPlayer; // El enemigo ataca al jugador
+    public bool attackPlayer; // El enemigo ataca al jugador
 
     private void Awake()
     {

@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BEU_CharacterAnimationDelegate : MonoBehaviour
 {
+    public string nextLevel;
     //Variables Publicas
     public GameObject left_Arm_AttackPoint, right_Arm_AttackPoint, left_Leg_AttackPoint, right_Leg_AttackPoint; //Puntos de ataque
-
+    
     public float standUpTimer = 2f; //Temporizador para que el personaje se pueda poner de pie
 
     //Variables Privadas
@@ -16,8 +18,10 @@ public class BEU_CharacterAnimationDelegate : MonoBehaviour
 
     [SerializeField] private AudioClip wooshSound, fallSound, groundHitSound, deadSound;
 
-    private BEU_EnemyMovement enemyMovement;
-    
+    public BEU_EnemyMovement enemyMovement;
+    public CapsuleCollider colisionador;
+    public Rigidbody rb;
+    public BEU_PlayerAttack jugador;
     private void Awake()
     {
         //Iniccializaci�n de Referencia
@@ -169,11 +173,7 @@ public class BEU_CharacterAnimationDelegate : MonoBehaviour
         audioSource.clip = wooshSound;
         audioSource.Play();
     }
-
-   
-        
-
-        void KnockDown()
+    void KnockDown()
     {
         audioSource.clip = fallSound; 
         audioSource.Play();
@@ -204,14 +204,27 @@ public class BEU_CharacterAnimationDelegate : MonoBehaviour
         audioSource.volume = 1f;
         audioSource.clip = deadSound;
         audioSource.Play();
-        BEU_EnemyManger.instance.SpawnEnemy();
-        Invoke("DesactivarGameObject", 6f);
+        SceneManager.LoadScene(enemyMovement.nextLevel);
+        Invoke("DesactivarGameObject", 5f);
+    }
+    
+    void PlayerDied()
+    {
+        audioSource.volume = 1f;
+        audioSource.clip = deadSound;
+        audioSource.Play();
+        SceneManager.LoadScene(nextLevel);
     }
 
+    void noAtacar()
+    {
+        jugador.enabled = false;
+        enemyMovement.attackPlayer = false;
+    }
     void DesactivarGameObject()
     {
-        
-        gameObject.SetActive(false);
+        colisionador.enabled = false;
+        rb.isKinematic = true;
     }
 }
 

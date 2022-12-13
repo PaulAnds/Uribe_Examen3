@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_BeatEmUp/Scenes/BeatEmUp.unity
+    guid: a49f64fde8a27eb48931bb6d24c11fb7
+  - enabled: 1
+    path: Assets/_BeatEmUp/Scenes/Derrota.unity
+    guid: d03847d49a92ea9489897cd12e5ea962
+  - enabled: 1
+    path: Assets/_BeatEmUp/Scenes/Level2.unity
+    guid: 2b1f0d285f50e0544b150bcc36d3c42f
+  - enabled: 1
+    path: Assets/_BeatEmUp/Scenes/WinScene.unity
+    guid: 8900cfad3673d2d49a070b97c69c4d95
+  - enabled: 1
+    path: Assets/_BeatEmUp/Scenes/WinScene 1.unity
+    guid: 1c6ff8b98095c3c45b21ae26f0d256f7
   m_configObjects: {}
