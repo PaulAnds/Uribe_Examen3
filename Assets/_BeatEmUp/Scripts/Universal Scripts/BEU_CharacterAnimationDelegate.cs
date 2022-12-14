@@ -14,20 +14,15 @@ public class BEU_CharacterAnimationDelegate : MonoBehaviour
     //Variables Privadas
     private BEU_CharacterAnimation animationScript;
 
-    private AudioSource audioSource;
-
-    [SerializeField] private AudioClip wooshSound, fallSound, groundHitSound, deadSound;
-
     public BEU_EnemyMovement enemyMovement;
     public CapsuleCollider colisionador;
     public Rigidbody rb;
     public BEU_PlayerAttack jugador;
+
     private void Awake()
     {
         //Iniccializaci�n de Referencia
         animationScript = GetComponent<BEU_CharacterAnimation>();
-
-        audioSource = GetComponent<AudioSource>();
 
         if (gameObject.CompareTag(BEU_Tags.ENEMY_TAG))
         {
@@ -167,24 +162,6 @@ public class BEU_CharacterAnimationDelegate : MonoBehaviour
         animationScript.StandUp();
     }
 
-    public void AttackSound()
-    {
-        audioSource.volume = 0.2f;
-        audioSource.clip = wooshSound;
-        audioSource.Play();
-    }
-    void KnockDown()
-    {
-        audioSource.clip = fallSound; 
-        audioSource.Play();
-    }
-    
-    void HitGround()
-    {
-        audioSource.clip = groundHitSound; 
-        audioSource.Play();
-    }
-
     void DisableMovement()
     {
         enemyMovement.enabled = false;
@@ -201,18 +178,12 @@ public class BEU_CharacterAnimationDelegate : MonoBehaviour
 
     void CharacterDied()
     {
-        audioSource.volume = 1f;
-        audioSource.clip = deadSound;
-        audioSource.Play();
         SceneManager.LoadScene(enemyMovement.nextLevel);
         Invoke("DesactivarGameObject", 5f);
     }
     
     void PlayerDied()
     {
-        audioSource.volume = 1f;
-        audioSource.clip = deadSound;
-        audioSource.Play();
         SceneManager.LoadScene(nextLevel);
     }
 

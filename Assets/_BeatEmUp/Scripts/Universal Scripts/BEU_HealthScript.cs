@@ -5,7 +5,7 @@ using UnityEngine;
 public class BEU_HealthScript : MonoBehaviour
 {
     //Variables publicas
-    public float healt = 100f; //Cantidad de vida del personaje
+    public float health = 100f; //Cantidad de vida del personaje
     public bool isPlayer; //El jugador tiene este script como componente Y/N?
 
     //Variables Privadas
@@ -13,16 +13,11 @@ public class BEU_HealthScript : MonoBehaviour
     private BEU_EnemyMovement enemyMovement;
     private bool characterDied; //El personaje esta muerto Y/N?
 
-    private BEU_HealtUi salud;
 
     private void Awake()
     {
         //Inicializaci�n de referencia de CharacterAnimation
         animationScript = GetComponentInChildren<BEU_CharacterAnimation>();
-        if (isPlayer)
-        {
-            salud = GetComponent<BEU_HealtUi>();
-        }
     }
 
     //Metodo para aplicar da�o
@@ -34,16 +29,11 @@ public class BEU_HealthScript : MonoBehaviour
             return;
 
         //Reducir vida usando el parametro local de da�o
-        healt -= _damage;
-        if (isPlayer)
-        {
-            salud.DisplayHealth(healt);
-        }
-        //Mostrar UI de vida
-
+        health -= _damage;
+        
         //Condicional de muerte del personaje
         //Checar si la cantidad de vida es 0 o menor
-        if(healt <= 0)
+        if(health <= 0)
         {
             //Llamar al metodo de muerte del script CharacterAnimation
             animationScript.Death();
